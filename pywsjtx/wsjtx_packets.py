@@ -280,13 +280,24 @@ class StatusPacket(GenericWSJTXPacket):
 
         # new in wsjtx-2.0.0
         self.special_op_mode = ps.QInt8()
+        # print(ps.QString())
+
+        self.frequency_tolerance = ps.QInt32()
+
+        self.tr_period = ps.QInt32()
+
+        self.configuration_name = ps.QString()
+
+        self.tx_message = ps.QString()
+
+        self.itone_data = ps.QString() or ""
 
     def __repr__(self):
         str =  'StatusPacket: from {}:{}\n\twsjtx id:{}\tde_call:{}\tde_grid:{}\n'.format(self.addr_port[0], self.addr_port[1],self.wsjtx_id,
                                                                                                  self.de_call, self.de_grid)
         str += "\tfrequency:{}\trx_df:{}\ttx_df:{}\tdx_call:{}\tdx_grid:{}\treport:{}\n".format(self.dial_frequency, self.rx_df, self.tx_df, self.dx_call, self.dx_grid, self.report)
-        str += "\ttransmitting:{}\t decoding:{}\ttx_enabled:{}\ttx_watchdog:{}\tsub_mode:{}\tfast_mode:{}\tspecial_op_mode:{}".format(self.transmitting, self.decoding, self.tx_enabled, self.tx_watchdog,
-                                                                                                                  self.sub_mode, self.fast_mode, self.special_op_mode)
+        str += "\ttransmitting:{}\t decoding:{}\ttx_enabled:{}\ttx_watchdog:{}\tsub_mode:{}\tfast_mode:{}\tspecial_op_mode:{}\ttx_mesasge:{}\titone_data:{}".format(self.transmitting, self.decoding, self.tx_enabled, self.tx_watchdog,
+                                                                                                                  self.sub_mode, self.fast_mode, self.special_op_mode, self.tx_message.strip(), self.itone_data)
         return str
 
 
